@@ -1,0 +1,35 @@
+.env
+
+# Created by https://www.gitignore.io/api/vuejs,expressionengine
+# Edit at https://www.gitignore.io/?templates=vuejs,expressionengine
+
+### ExpressionEngine ###
+.DS_Store
+
+# Images
+images/avatars/
+images/captchas/
+images/smileys/
+images/member_photos/
+images/signature_attachments/
+images/pm_attachments/
+
+# For security do not publish the following files
+system/expressionengine/config/database.php
+system/expressionengine/config/config.php
+
+# Caches
+sized/
+thumbs/
+_thumbs/
+*/expressionengine/cache/*
+
+### Vuejs ###
+# Recommended template: Node.gitignore
+
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+
+# End of https://www.gitignore.io/api/vuejs,expressionengine
