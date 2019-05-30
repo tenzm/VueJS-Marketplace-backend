@@ -4,8 +4,7 @@ const News = require("../models/news")
 const jwt = require("jsonwebtoken")
 
 router.get("/", (req, res) => {
-    News.find().then(news => {
-        console.log(news)
+    News.find({}).sort({createdAt: -1}).then(news => {
         res.send(news)
     })
 })

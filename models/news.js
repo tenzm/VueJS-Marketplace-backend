@@ -3,7 +3,11 @@ const Schema = mongoose.Schema
 const newsSchema = new Schema({
   title: String,
   text: String,
-  img: String
+  img: String,
+  date: Date
+}, 
+{
+  timestamps: true
 })
 const News = mongoose.model("News", newsSchema)
 
