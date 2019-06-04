@@ -7,6 +7,7 @@ const users = require("./users")
   app.use("/auth", auth)
   app.use("/users", users)
   app.use("/uploads", require("./uploads"))
+  app.use("/shop", require("./shop"))
 }
 
  module.exports = route
