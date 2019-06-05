@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken")
 router.post("/", (req, res) => {
   let { username, password } = req.body
   let user = new Users({ username, password })
+  
   // Сохранение пользователя
   user
     .save()

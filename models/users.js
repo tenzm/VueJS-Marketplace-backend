@@ -9,6 +9,7 @@ const crypto = require("crypto")
       type: String
     },
   passwordHash: String,
+  shopcart: [],
   salt: String
 }, {
     timestamps: true

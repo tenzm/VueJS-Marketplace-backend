@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Shop = require("../models/shop")
 const jwt = require("jsonwebtoken")
+const { check_auth } = require("../middleware/auth")
 
 router.get("/", (req, res) => {
     Shop.find({}).then(shop => {
@@ -9,16 +10,10 @@ router.get("/", (req, res) => {
     })
 })
 
-router.post("/", (req, res) => {
-    //const token = req.headers['authorization']
-    //jwt.verify(token, 'secret', function(err, decoded){
-    //    if(err) return res.send("error");
-    //    else{
+router.post("/", check_auth, (req, res) => {
     let shopItem = new Shop(req.body)
     shopItem.save().then(shopItem => {
     res.send(shopItem)
-    //        })
-    //    }
     })
 })
 
