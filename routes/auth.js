@@ -50,24 +50,12 @@ router.get("/cart", (req, res) => {
     })
 })
 
-function findId(array, value){
-  id = -1;
-  for(let i = 0; i < array.length; i++){
-    if(array[i] == value){
-      id = i;
-      break;
-    }
-  }
-  return id;
-}
-
 router.post("/cart", (req, res) => {
   const token = req.headers['authorization'];
     jwt.verify(token, 'secret', function(err, decoded){
       console.log(decoded);
         let username = decoded.data.username;
         Users.findOne({username}).then(user => {
-          if(findId(user.shopcart, req.body.id) < 0){
           user.shopcart.push(req.body.id);
           user.save()
           .then(() => {
@@ -76,8 +64,6 @@ router.post("/cart", (req, res) => {
           .catch(err => {
             res.send(false)
           })
-          res.send(true)
-          }
         })
     })
 })
@@ -87,8 +73,14 @@ router.post("/uncart", (req, res) => {
     jwt.verify(token, 'secret', function(err, decoded){
         let username = decoded.data.username;
         Users.findOne({username}).then(user => {
-          del_id = findId(user.shopcart, req.body.id);
-          user.shopcart.splice(del_id, 1);
+          new_shopcart = [];
+          for(let i = 0; i < user.shopcart.length; i++){
+              if(user.shopcart[i] != req.body.id){
+                new_shopcart.push(user.shopcart[i]);
+              }
+          }
+          user.shopcart = new_shopcart;
+          console.log(user.shopcart);
           user.save()
           .then(() => {
             res.send(true)
