@@ -23,6 +23,20 @@ router.get("/messages", check_auth, (req, res) => {
   })
 })
 
+router.post("/messages/check", check_auth, (req, res) => {
+  const userId = req.user._id
+  Messages.find({
+    $or: [{
+      from: userId
+    }, {
+      to: userId
+    }]
+  }).then(messages => {
+    console.log(req.body);
+    res.send(req.body.count != messages.length);
+  })
+})
+
 router.post("/messages", check_auth, (req, res) => {
   message_req = req.body;
   message = new Messages(message_req)
