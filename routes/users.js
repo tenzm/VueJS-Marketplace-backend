@@ -10,7 +10,7 @@ const {
 router.post("/", (req, res) => {
   let { username, password } = req.body
   let user = new Users({ username, password })
-  user.avatar = "null";
+  user.avatar = "uploads/standart_avatar.png";
   
   // Сохранение пользователя
   user
@@ -19,7 +19,7 @@ router.post("/", (req, res) => {
       res.send("ok")
     })
     .catch(err => {
-      res.status("418").send("err")
+      res.status("404").send("err")
     })
 })
 
