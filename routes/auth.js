@@ -17,7 +17,6 @@ router.post("/login", (req, res) => {
           "secret",
           { expiresIn: "1h" }
         )
-        console.log("success")
         res.send(token)
       }
       throw new Error("=(")
